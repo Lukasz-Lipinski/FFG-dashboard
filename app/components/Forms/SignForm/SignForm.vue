@@ -1,5 +1,11 @@
 <script setup lang="ts">
-import { VForm, VRow, VTextField, VBtn } from "vuetify/components";
+import { VForm, VRow, VBtn } from "vuetify/components";
+
+const props = defineProps<{
+  isRegister: boolean;
+}>();
+
+const btnLabel = computed(() => (props.isRegister ? "Sign up!" : "Sign in!"));
 </script>
 
 <template>
@@ -10,12 +16,17 @@ import { VForm, VRow, VTextField, VBtn } from "vuetify/components";
     </VRow>
     <VRow class="container-column">
       <VLabel>Password</VLabel>
-      <input class="form-field" label="Password" type="password" />
+      <input class="form-field" label="Password" type="password" /> </VRow
+    ><VRow class="container-column">
+      <VLabel>Band</VLabel>
+      <input class="form-field" label="Band" type="text" />
     </VRow>
     <VRow align="center">
-      <VBtn variant="flat" class="login-btn" color="#1E5BFF"> Login </VBtn>
+      <VBtn variant="flat" class="login-btn" color="#1E5BFF">
+        {{ btnLabel }}
+      </VBtn>
     </VRow>
-    <VCol class="center-content">
+    <VCol v-if="!isRegister" class="center-content">
       <VBtn variant="plain"> Forgot your password ?</VBtn>
     </VCol>
   </VForm>

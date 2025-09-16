@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import LoginForm from "~/components/Forms/LoginForm/LoginForm.vue";
-import RegisterForm from "~/components/Forms/SignupForm/SignupForm.vue";
+import SignForm from "../components/Forms/SignForm/SignForm.vue";
 
 enum FormType {
   Login,
@@ -8,10 +7,6 @@ enum FormType {
 }
 
 const selectedForm = ref<FormType>(FormType.Login);
-
-const formComponent = computed(() => {
-  return selectedForm.value === FormType.Register ? RegisterForm : LoginForm;
-});
 </script>
 
 <template>
@@ -34,7 +29,10 @@ const formComponent = computed(() => {
     </VBtnToggle>
     <h3>Welcome back</h3>
     <div class="form">
-      <Component class="custom-width" :is="formComponent" />
+      <SignForm
+        class="custom-width"
+        :is-register="selectedForm == FormType.Register"
+      />
     </div>
   </div>
 </template>
