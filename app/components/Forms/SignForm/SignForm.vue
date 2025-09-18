@@ -6,6 +6,19 @@ const props = defineProps<{
 }>();
 
 const btnLabel = computed(() => (props.isRegister ? "Sign up!" : "Sign in!"));
+
+async function onSubmit() {
+  const req = await $fetch("/api/auth", {
+    method: "POST",
+    body: {
+      email: "XXXXXXXXXXXXX",
+      password: "XXXX",
+      band: "test",
+    },
+  });
+
+  console.log(req);
+}
 </script>
 
 <template>
@@ -22,12 +35,17 @@ const btnLabel = computed(() => (props.isRegister ? "Sign up!" : "Sign in!"));
       <input class="form-field" label="Band" type="text" />
     </VRow>
     <VRow align="center">
-      <VBtn variant="flat" class="login-btn" color="#1E5BFF">
+      <VBtn
+        variant="flat"
+        class="login-btn"
+        color="#1E5BFF"
+        @click="onSubmit()"
+      >
         {{ btnLabel }}
       </VBtn>
     </VRow>
     <VCol v-if="!isRegister" class="center-content">
-      <VBtn variant="plain"> Forgot your password ?</VBtn>
+      <NuxtLink to="/reset-password">Forgot your password ?</NuxtLink>
     </VCol>
   </VForm>
 </template>
