@@ -1,45 +1,107 @@
 <script setup lang="ts">
-import { VForm, VRow, VBtn } from "vuetify/components";
+import { ref, computed } from "vue";
+import * as yup from "yup";
+import {
+  Form,
+  Field,
+  useForm,
+  type SubmissionHandler,
+  type GenericObject,
+} from "vee-validate";
+import { VRow, VBtn } from "vuetify/components";
+
+import ErrorMsg from "../ErrorMsg/ErrorMsg.vue";
+import { prepareDataForSignRequest } from "./signForm.service";
+import type { CreateUserAccount } from "~/shared/models";
+
+const schema = yup.object({
+  email: yup.string().email().required(),
+  password: yup.string().min(8).required(),
+  band: yup.string().required(),
+});
+
+const { values, handleSubmit, submitForm } = useForm({
+  validationSchema: schema,
+  initialValues: {
+    email: "",
+    password: "",
+    band: "",
+  },
+});
+
+const isSubmitting = ref<boolean>();
+
+const onSubmit: SubmissionHandler<GenericObject> = async (values) => {
+  const userCred = prepareDataForSignRequest(values as CreateUserAccount);
+  isSubmitting.value = true;
+
+  try {
+    const res = await $fetch("/api/auth", {
+      method: "POST",
+      body: userCred,
+    });
+
+    console.log(res);
+  } catch (error) {
+    console.error("Error during form submission:", error);
+  } finally {
+    isSubmitting.value = false;
+  }
+};
 
 const props = defineProps<{
   isRegister: boolean;
 }>();
 
 const btnLabel = computed(() => (props.isRegister ? "Sign up!" : "Sign in!"));
-
-async function onSubmit() {
-  const req = await $fetch("/api/auth", {
-    method: "POST",
-    body: {
-      email: "XXXXXXXXXXXXX",
-      password: "XXXX",
-      band: "test",
-    },
-  });
-
-  console.log(req);
-}
 </script>
 
 <template>
-  <VForm>
+  <Form
+    v-slot="{ isSubmitting, values, submitCount, handleSubmit: onSubmit }"
+    :validation-schema="schema"
+    @submit="onSubmit"
+  >
     <VRow class="container-column">
       <VLabel>Email</VLabel>
-      <input class="form-field" label="Email" type="email" />
+      <Field
+        class="form-field"
+        label="Email"
+        type="email"
+        name="email"
+        placeholder="Enter email"
+      />
+      <ErrorMsg name="email" />
     </VRow>
     <VRow class="container-column">
       <VLabel>Password</VLabel>
-      <input class="form-field" label="Password" type="password" /> </VRow
-    ><VRow class="container-column">
+      <Field
+        class="form-field"
+        label="Password"
+        type="password"
+        name="password"
+      />
+      <ErrorMsg name="password" />
+    </VRow>
+    <VRow class="container-column">
       <VLabel>Band</VLabel>
-      <input class="form-field" label="Band" type="text" />
+      <Field
+        class="form-field"
+        label="Band"
+        type="text"
+        name="band"
+        placeholder="Enter band's name"
+      />
+      <ErrorMsg name="band" />
     </VRow>
     <VRow align="center">
       <VBtn
+        :disabled="isSubmitting"
+        type="submit"
+        as="button"
         variant="flat"
         class="login-btn"
         color="#1E5BFF"
-        @click="onSubmit()"
       >
         {{ btnLabel }}
       </VBtn>
@@ -47,7 +109,7 @@ async function onSubmit() {
     <VCol v-if="!isRegister" class="center-content">
       <NuxtLink to="/reset-password">Forgot your password ?</NuxtLink>
     </VCol>
-  </VForm>
+  </Form>
 </template>
 
 <style scoped lang="scss">
@@ -55,9 +117,6 @@ async function onSubmit() {
   margin-top: 1rem;
   display: flex;
   justify-content: center;
-
-  .v-btn {
-  }
 }
 
 .container-column {
@@ -73,13 +132,10 @@ async function onSubmit() {
   input {
     border: 1px solid #e5e7eb;
     color: #111827;
-    padding: 1rem;
-    width: 100%;
     padding: 0.75rem 1rem;
     border-radius: 0.5rem;
     font-size: 0.8rem;
     font-family: "Inter", sans-serif;
-    width: 100%;
   }
 }
 

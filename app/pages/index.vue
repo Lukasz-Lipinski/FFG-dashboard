@@ -11,10 +11,11 @@ const selectedForm = ref<FormType>(FormType.Login);
 
 <template>
   <div class="form-container">
-    <VBtnToggle>
+    <VBtnToggle :model-value="selectedForm" mandatory>
       <VBtn
         color="#1E5BFF"
         variant="outlined"
+        :value="FormType.Login"
         @click="selectedForm = FormType.Login"
       >
         Login
@@ -22,6 +23,7 @@ const selectedForm = ref<FormType>(FormType.Login);
       <VBtn
         color="#1E5BFF"
         variant="outlined"
+        :value="FormType.Register"
         @click="selectedForm = FormType.Register"
       >
         Register
@@ -31,7 +33,7 @@ const selectedForm = ref<FormType>(FormType.Login);
     <div class="form">
       <SignForm
         class="custom-width"
-        :is-register="selectedForm == FormType.Register"
+        :is-register="selectedForm === FormType.Register"
       />
     </div>
   </div>
@@ -60,6 +62,6 @@ const selectedForm = ref<FormType>(FormType.Login);
 }
 
 .custom-width {
-  min-width: 400px;
+  width: 25rem;
 }
 </style>

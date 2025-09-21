@@ -3,7 +3,17 @@
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
-  modules: ["vuetify-nuxt-module", "@nuxtjs/supabase"],
+  modules: [
+    "vuetify-nuxt-module",
+    "@nuxtjs/supabase",
+    [
+      "@vee-validate/nuxt",
+      {
+        autoImports: true,
+        componentNames: ["VField", "VForm"],
+      },
+    ],
+  ],
   css: ["./app/styles.css"],
   supabase: {
     redirect: false,
