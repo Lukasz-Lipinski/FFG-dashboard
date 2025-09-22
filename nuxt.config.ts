@@ -10,12 +10,15 @@ export default defineNuxtConfig({
       "@vee-validate/nuxt",
       {
         autoImports: true,
-        componentNames: ["VField", "VForm"],
+        componentNames: ["VField", "VForm", "VToast"],
       },
     ],
   ],
   css: ["./app/styles.css"],
   supabase: {
     redirect: false,
+  },
+  imports: {
+    dirs: ["~/composables/**"],
   },
 });

@@ -29,6 +29,8 @@ const { values, handleSubmit, submitForm } = useForm({
   },
 });
 
+const { success, error } = useToast();
+
 const isSubmitting = ref<boolean>();
 
 const onSubmit: SubmissionHandler<GenericObject> = async (values) => {
@@ -41,9 +43,9 @@ const onSubmit: SubmissionHandler<GenericObject> = async (values) => {
       body: userCred,
     });
 
-    console.log(res);
-  } catch (error) {
-    console.error("Error during form submission:", error);
+    success("Successfully signed in!");
+  } catch (er) {
+    error("An error occurred. Please try again.");
   } finally {
     isSubmitting.value = false;
   }

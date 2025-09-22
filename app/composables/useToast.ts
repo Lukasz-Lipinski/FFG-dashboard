@@ -1,26 +1,32 @@
+const message = ref<string>("");
+const isShown = ref<boolean>(false);
+const color = ref<"error" | "success" | undefined>(undefined);
+
 export const useToast = () => {
-  const message = ref<string>("");
-  const isShown = ref<boolean>();
-
-  let timer: NodeJS.Timeout;
-
-  onMounted(() => {
-    timer = setTimeout(() => {
-      isShown.value = false;
-    }, 3000);
-  });
-
-  onUnmounted(() => {
-    clearTimeout(timer);
-  });
-
-  const show = () => {
+  const success = (msg: string) => {
+    debugger;
     isShown.value = true;
+    message.value = msg;
+    color.value = "success";
+  };
+
+  const error = (msg: string) => {
+    isShown.value = true;
+    message.value = msg;
+    color.value = "error";
+  };
+
+  const close = () => {
+    isShown.value = false;
+    message.value = "";
+    color.value = undefined;
   };
 
   return {
     message,
     isShown,
-    show,
+    success,
+    error,
+    close,
   };
 };
