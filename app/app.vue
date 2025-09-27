@@ -1,6 +1,5 @@
 <template>
   <VApp>
-    <h2>test</h2>
     <NuxtPage />
     <Toast />
   </VApp>
