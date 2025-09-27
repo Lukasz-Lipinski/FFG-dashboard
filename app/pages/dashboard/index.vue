@@ -1,5 +1,9 @@
-<template>dashboard</template>
+<template>
+    <NuxtLayout name="dashboard">
+        <NuxtPage />
+    </NuxtLayout>
+</template>
 
 <script lang="ts" setup></script>
 
-<style lang=""></style>
+<style lang="css"></style>
