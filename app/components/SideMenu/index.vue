@@ -1,9 +1,17 @@
 <template>
     <nav class="container-nav">
-        <NuxtLink v-for="link of links" :to="'/dashboard' + link.href" class="nav-link">
-            <v-icon class="icon" :icon="'mdi-'+link.icon" />
+       <div>
+         <NuxtLink v-for="link of links" :to="'/dashboard' + link.href" class="nav-link" active-class="active">
+            <v-icon :icon="'mdi-'+link.icon" />
             {{ link.label }}
         </NuxtLink>
+       </div>
+        <div>
+            <a class="nav-link">
+                <v-icon icon="mdi-logout" />
+                Logout
+            </a>
+        </div>
     </nav>
 </template>
 
@@ -15,6 +23,7 @@ type MenuLinkType = {
 }
 
 const links: MenuLinkType[] = [
+    {href: "/", label: "Dashboard", icon: "home"},
     {href: "/users", label: "Users", icon: "account"},
     {href: "/content", label: "Content", icon: "file-document-edit-outline "},
     {href: "/page", label: "Page", icon: "page"},
@@ -27,9 +36,11 @@ const links: MenuLinkType[] = [
     padding: 1rem;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     border-right: 1px solid #E5E7EB;
 
     .nav-link {
+        position: relative;
         display: flex;
         align-items: center;
         justify-content: start;
@@ -42,7 +53,7 @@ const links: MenuLinkType[] = [
         transition: all 0.2s ease;
         text-decoration: none;
 
-        .icon {
+        .v-icon {
             margin: 0 0.5rem;
         }
     }
