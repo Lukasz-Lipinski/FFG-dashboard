@@ -20,7 +20,7 @@ const schema = yup.object({
   band: yup.string().required(),
 });
 
-const { values, handleSubmit, submitForm } = useForm({
+const { values } = useForm({
   validationSchema: schema,
   initialValues: {
     email: "",
@@ -56,11 +56,11 @@ const props = defineProps<{
 }>();
 
 const btnLabel = computed(() => (props.isRegister ? "Sign up!" : "Sign in!"));
-</script>
+</script>f
 
 <template>
   <Form
-    v-slot="{ isSubmitting, values, submitCount, handleSubmit: onSubmit }"
+    v-slot="{ isSubmitting, values, handleSubmit: onSubmit }"
     :validation-schema="schema"
     @submit="onSubmit"
   >

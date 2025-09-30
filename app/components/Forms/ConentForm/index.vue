@@ -1,11 +1,10 @@
 <template>
-  <NuxtLayout name="dashboard">
-    <FormSwitch></FormSwitch>
-  </NuxtLayout>
+  <VForm>
+    
+  </VForm>
 </template>
 
 <script lang="ts" setup>
-
 </script>
 
 <style lang="css" scoped>

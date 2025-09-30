@@ -1,34 +1,18 @@
 <script setup lang="ts">
 import SignForm from "../components/Forms/SignForm/SignForm.vue";
+import FormSwitch from "../components/Forms/FormSwitch/index.vue"
 
 enum FormType {
   Login,
   Register,
 }
 
-const selectedForm = ref<FormType>(FormType.Login);
+const selectedForm = ref<number>(FormType.Login);
 </script>
 
 <template>
-  <div class="form-container">
-    <VBtnToggle :model-value="selectedForm" mandatory>
-      <VBtn
-        color="#1E5BFF"
-        variant="outlined"
-        :value="FormType.Login"
-        @click="selectedForm = FormType.Login"
-      >
-        Login
-      </VBtn>
-      <VBtn
-        color="#1E5BFF"
-        variant="outlined"
-        :value="FormType.Register"
-        @click="selectedForm = FormType.Register"
-      >
-        Register
-      </VBtn>
-    </VBtnToggle>
+  <NuxtLayout name="register">
+    <FormSwitch v-model="selectedForm" :left-btn-value="FormType.Login" left-label="Login" :right-btn-value="FormType.Register" rigth-label="Register" />
     <h3>Welcome back</h3>
     <div class="form">
       <SignForm
@@ -36,29 +20,12 @@ const selectedForm = ref<FormType>(FormType.Login);
         :is-register="selectedForm === FormType.Register"
       />
     </div>
-  </div>
+  </NuxtLayout>
 </template>
 
 <style scoped lang="scss">
-.form-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  height: 100vh;
-  box-sizing: border-box;
-  padding: 1rem;
-
-  .v-btn {
-    padding: 0 2rem;
-    font-size: 0.6rem;
-    font-weight: 500;
-  }
-
-  .form {
+.form {
     box-sizing: border-box;
-  }
 }
 
 .custom-width {
