@@ -29,6 +29,8 @@ const { values } = useForm({
   },
 });
 
+const backendError = useError();
+
 const { success, error } = useToast();
 
 const isSubmitting = ref<boolean>();
@@ -38,17 +40,19 @@ const onSubmit: SubmissionHandler<GenericObject> = async (values) => {
   isSubmitting.value = true;
 
   try {
-    const res = await $fetch("/api/auth", {
+    const res = await $fetch("/api/user", {
       method: "POST",
       body: userCred,
     });
+    console.log(res);
+  } catch (err) {
+    console.log(err);
+    console.log(backendError.value);
 
-    success("Successfully signed in!");
-  } catch (er) {
-    error("An error occurred. Please try again.");
-  } finally {
-    isSubmitting.value = false;
+    error("An error occurred, please try again.");
   }
+
+  isSubmitting.value = false;
 };
 
 const props = defineProps<{

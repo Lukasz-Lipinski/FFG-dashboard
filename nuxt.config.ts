@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
     "vuetify-nuxt-module",
-    // "@nuxtjs/supabase",
+    "@nuxtjs/supabase",
     [
       "@vee-validate/nuxt",
       {
@@ -15,9 +15,9 @@ export default defineNuxtConfig({
     ],
   ],
   css: ["./app/styles.css"],
-  // supabase: {
-  //   redirect: false,
-  // },
+  supabase: {
+    redirect: false,
+  },
   imports: {
     dirs: ["~/composables/**"],
   },

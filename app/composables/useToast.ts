@@ -4,7 +4,6 @@ const color = ref<"error" | "success" | undefined>(undefined);
 
 export const useToast = () => {
   const success = (msg: string) => {
-    debugger;
     isShown.value = true;
     message.value = msg;
     color.value = "success";
