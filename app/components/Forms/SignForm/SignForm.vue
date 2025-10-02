@@ -60,7 +60,8 @@ const props = defineProps<{
 }>();
 
 const btnLabel = computed(() => (props.isRegister ? "Sign up!" : "Sign in!"));
-</script>f
+</script>
+f
 
 <template>
   <Form
@@ -133,15 +134,6 @@ const btnLabel = computed(() => (props.isRegister ? "Sign up!" : "Sign in!"));
   .v-label {
     color: #111827;
     margin-bottom: 0.25rem;
-  }
-
-  input {
-    border: 1px solid #e5e7eb;
-    color: #111827;
-    padding: 0.75rem 1rem;
-    border-radius: 0.5rem;
-    font-size: 0.8rem;
-    font-family: "Inter", sans-serif;
   }
 }
 
