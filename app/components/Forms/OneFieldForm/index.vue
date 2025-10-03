@@ -8,7 +8,9 @@
   >
     <VLabel>{{ label }}</VLabel>
     <Field :name="fieldName" type="email" class="form-field" />
-    <ErrorMsg :name="fieldName" class="error-message" />
+    <div>
+      <ErrorMsg :name="fieldName" class="error-message" />
+    </div>
     <VBtn type="submit"> {{ btnText }} </VBtn>
   </Form>
 </template>
@@ -23,7 +25,7 @@ import {
 import { Schema } from "yup";
 import ErrorMsg from "../ErrorMsg/ErrorMsg.vue";
 
-const { schema } = defineProps<{
+const { schema, fieldName } = defineProps<{
   schema: Schema;
   label: string;
   btnText: string;
@@ -33,9 +35,6 @@ const { schema } = defineProps<{
 
 const { values, errors } = useForm({
   validationSchema: schema,
-  initialValues: {
-    fieldValue: "",
-  },
 });
 
 const emit = defineEmits<{
@@ -52,5 +51,14 @@ const onSubmit: SubmissionHandler<GenericObject> = async (event) => {
   display: flex;
   flex-direction: column;
   min-width: 450px;
+
+  .v-btn {
+    margin-top: 2rem;
+    font-size: 0.8rem;
+  }
+
+  div {
+    position: relative;
+  }
 }
 </style>

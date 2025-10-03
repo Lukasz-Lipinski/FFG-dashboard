@@ -10,6 +10,7 @@ defineProps<{
 
 <style scoped lang="css">
 .error-msg {
+  position: absolute;
   color: #ef4444;
   font-size: 0.875rem;
   font-weight: 400;
