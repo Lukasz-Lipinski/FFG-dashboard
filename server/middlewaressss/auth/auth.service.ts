@@ -14,6 +14,8 @@ export const CheckIfUserExists = async (
     .like("Band", userCred.Band)
     .like("Password", userCred.Password);
 
+  console.log("data", data);
+
   if (error) {
     throw new Error(error.message);
   }
