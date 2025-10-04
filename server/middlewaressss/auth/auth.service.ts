@@ -37,7 +37,7 @@ export const CreateAdminUser = async (
     RoleType.Admin
   );
 
-  await client.from("Users").insert<CreateUserAccountModel>([newAdmin]);
+  await client.from("Users").insert([newAdmin]);
 
   const user = await CheckIfUserExists(event, userCred);
 
@@ -70,7 +70,7 @@ export const CreateRegularUser = async (
     RoleType.Member
   );
 
-  await client.from("Users").insert<CreateUserAccountModel>([newUser]);
+  await client.from("Users").insert([newUser]);
 
   const user = await CheckIfUserExists(event, userCred);
 
