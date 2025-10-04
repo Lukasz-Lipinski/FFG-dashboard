@@ -1,33 +1,23 @@
-export enum RoleType {
-  Basic = "Basic",
-  Member = "Member",
-  Admin = "Admin",
-}
+import { RoleType } from "~~/server/entity/users/UserModel";
 
-export class UserModel {
+export class UserDto {
   Id: number;
   Email: string;
   Password: string;
   Band: string;
   Role: string;
-  CreatedAt: Date;
-  UpdatedDate?: Date;
 
   constructor(
     id: number,
     email: string,
     password: string,
     band: string,
-    role: RoleType,
-    createdAt: Date,
-    updatedDate?: Date
+    role: RoleType
   ) {
     this.Id = id;
     this.Email = email;
     this.Password = password;
     this.Band = band;
     this.Role = role;
-    this.CreatedAt = createdAt;
-    this.UpdatedDate = updatedDate;
   }
 }

@@ -1,5 +1,5 @@
 const message = ref<string>("");
-const isShown = ref<boolean>(false);
+const isShown = ref<boolean>({ required: true, default: false });
 const color = ref<"error" | "success" | undefined>(undefined);
 
 export const useToast = () => {

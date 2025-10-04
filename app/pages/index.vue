@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import SignForm from "../components/Forms/SignForm/SignForm.vue";
-import FormSwitch from "../components/Forms/FormSwitch/index.vue"
+import FormSwitch from "../components/Forms/FormSwitch/index.vue";
 
 enum FormType {
   Login,
@@ -12,7 +12,13 @@ const selectedForm = ref<number>(FormType.Login);
 
 <template>
   <NuxtLayout name="register">
-    <FormSwitch v-model="selectedForm" :left-btn-value="FormType.Login" left-label="Login" :right-btn-value="FormType.Register" rigth-label="Register" />
+    <FormSwitch
+      v-model="selectedForm as number"
+      :left-btn-value="FormType.Login"
+      left-label="Login"
+      :right-btn-value="FormType.Register"
+      rigth-label="Register"
+    />
     <h3>Welcome back</h3>
     <div class="form">
       <SignForm
@@ -25,7 +31,7 @@ const selectedForm = ref<number>(FormType.Login);
 
 <style scoped lang="scss">
 .form {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .custom-width {
