@@ -5,7 +5,6 @@ export const CheckIfUserExists = async (
   event: H3Event,
   userCred: CreateUserAccountModel
 ): Promise<boolean> => {
-  debugger;
   const client = await serverSupabaseClient(event);
   const { data, error } = await client
     .from("Users")
@@ -13,8 +12,6 @@ export const CheckIfUserExists = async (
     .like("Email", userCred.Email)
     .like("Band", userCred.Band)
     .like("Password", userCred.Password);
-
-  console.log("data", data);
 
   if (error) {
     throw new Error(error.message);

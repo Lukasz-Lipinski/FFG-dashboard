@@ -23,6 +23,7 @@ export const useToast = () => {
 
   return {
     message,
+    color,
     isShown,
     success,
     error,

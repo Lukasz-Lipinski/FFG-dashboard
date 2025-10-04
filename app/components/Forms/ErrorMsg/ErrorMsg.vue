@@ -1,5 +1,7 @@
 <template>
-  <ErrorMessage class="error-msg" :name="name" />
+  <div>
+    <ErrorMessage class="error-msg" :name="name" />
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -9,10 +11,16 @@ defineProps<{
 </script>
 
 <style scoped lang="css">
+div {
+  position: relative;
+  padding-bottom: calc(0.5rem + 4.5px);
+  padding-left: 0.5rem;
+}
+
 .error-msg {
   position: absolute;
   color: #ef4444;
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   font-weight: 400;
   margin-top: 0.25rem;
 }

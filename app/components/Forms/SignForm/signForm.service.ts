@@ -6,8 +6,8 @@ export function prepareDataForSignRequest(data: {
   band: string;
 }): CreateUserAccount {
   return {
-    email: data.email,
-    password: data.password,
-    band: data.band,
+    Email: data.email,
+    Password: data.password,
+    Band: data.band,
   };
 }

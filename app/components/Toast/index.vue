@@ -4,7 +4,7 @@
       v-model="isShown"
       absolute
       timeout="3000"
-      color="error"
+      :color="color"
       location="bottom center"
     >
       <template #text>
@@ -20,12 +20,18 @@
 </template>
 
 <script lang="ts" setup>
-const { isShown, message } = useToast();
+const { isShown, message, color } = useToast();
 </script>
 
 <style lang="css" scoped>
 .error {
+  background-color: red;
 }
 .success {
+  background-color: green;
+}
+
+.v-btn {
+  font-size: 0.6rem;
 }
 </style>

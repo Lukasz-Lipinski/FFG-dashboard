@@ -8,9 +8,7 @@
   >
     <VLabel>{{ label }}</VLabel>
     <Field :name="fieldName" type="email" class="form-field" />
-    <div>
-      <ErrorMsg :name="fieldName" class="error-message" />
-    </div>
+    <ErrorMsg :name="fieldName" class="error-message" />
     <VBtn type="submit"> {{ btnText }} </VBtn>
   </Form>
 </template>
@@ -55,10 +53,6 @@ const onSubmit: SubmissionHandler<GenericObject> = async (event) => {
   .v-btn {
     margin-top: 2rem;
     font-size: 0.8rem;
-  }
-
-  div {
-    position: relative;
   }
 }
 </style>

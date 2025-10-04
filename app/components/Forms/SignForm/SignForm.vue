@@ -12,7 +12,6 @@ import { VRow, VBtn } from "vuetify/components";
 
 import ErrorMsg from "../ErrorMsg/ErrorMsg.vue";
 import { prepareDataForSignRequest } from "./signForm.service";
-import type { CreateUserAccount } from "~/shared/models";
 
 const schema = yup.object({
   email: yup.string().email().required(),
@@ -29,27 +28,24 @@ const { values } = useForm({
   },
 });
 
-const backendError = useError();
-
 const { success, error } = useToast();
 
 const isSubmitting = ref<boolean>();
 
 const onSubmit: SubmissionHandler<GenericObject> = async (values) => {
-  const userCred = prepareDataForSignRequest(values as CreateUserAccount);
+  const userCred = prepareDataForSignRequest(values as any);
   isSubmitting.value = true;
 
-  try {
-    const res = await $fetch("/api/user", {
-      method: "POST",
-      body: userCred,
-    });
-    console.log(res);
-  } catch (err) {
-    console.log(err);
-    console.log(backendError.value);
+  const postFix = props.isRegister ? "signup" : "signin";
+  const res = await fetch(`/api/user/${postFix}`, {
+    method: "POST",
+    body: JSON.stringify(userCred),
+  });
 
-    error("An error occurred, please try again.");
+  if (res.ok) {
+    success(props.isRegister ? "Registered!" : "Logged in!");
+  } else {
+    error(res.statusText);
   }
 
   isSubmitting.value = false;
