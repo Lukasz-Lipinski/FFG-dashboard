@@ -14,7 +14,7 @@
       :value="rightBtnValue"
       @click="formValue = rightBtnValue"
     >
-      {{ rigthLabel }}
+      {{ rightLabel }}
     </VBtn>
   </VBtnToggle>
 </template>
@@ -22,7 +22,7 @@
 <script lang="ts" setup>
 defineProps<{
   leftLabel: string;
-  rigthLabel: string;
+  rightLabel: string;
   leftBtnValue: number;
   rightBtnValue: number;
 }>();
