@@ -1,11 +1,22 @@
 <script setup lang="ts">
+import { watch } from "vue";
 import SignForm from "../components/Forms/SignForm/SignForm.vue";
 import FormSwitch from "../components/Forms/FormSwitch/index.vue";
+
+const user = useCookie("user");
 
 enum FormType {
   Login,
   Register,
 }
+
+watch(user, () => {
+  if (user.value) {
+    return navigateTo({
+      name: "dashboard",
+    });
+  }
+});
 
 const selectedForm = ref<number>(FormType.Login);
 </script>

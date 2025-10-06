@@ -13,6 +13,8 @@ import { VRow, VBtn } from "vuetify/components";
 import ErrorMsg from "../ErrorMsg/ErrorMsg.vue";
 import { prepareDataForSignRequest } from "./signForm.service";
 
+const user = useCookie("user");
+
 const schema = yup.object({
   email: yup.string().email().required(),
   password: yup.string().min(8).required(),
@@ -43,6 +45,7 @@ const onSubmit: SubmissionHandler<GenericObject> = async (values) => {
   });
 
   if (res.ok) {
+    user.value = await res.json();
     success(props.isRegister ? "Registered!" : "Logged in!");
   } else {
     error(res.statusText);
