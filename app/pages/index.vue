@@ -28,7 +28,7 @@ const selectedForm = ref<number>(FormType.Login);
       :left-btn-value="FormType.Login"
       left-label="Login"
       :right-btn-value="FormType.Register"
-      rigth-label="Register"
+      right-label="Register"
     />
     <h3>Welcome back</h3>
     <div class="form">
