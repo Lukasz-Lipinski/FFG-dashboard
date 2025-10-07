@@ -18,13 +18,13 @@ watch(user, () => {
   }
 });
 
-const selectedForm = ref<number>(FormType.Login);
+const selectedForm = defineModel({ default: FormType.Login });
 </script>
 
 <template>
   <NuxtLayout name="register">
     <FormSwitch
-      v-model="selectedForm as number"
+      v-model:model-value="selectedForm"
       :left-btn-value="FormType.Login"
       left-label="Login"
       :right-btn-value="FormType.Register"

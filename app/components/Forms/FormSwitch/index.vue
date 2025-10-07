@@ -25,10 +25,10 @@ defineProps<{
   rightLabel: string;
   leftBtnValue: number;
   rightBtnValue: number;
+  modelValue: number;
 }>();
 
-const formValue = defineModel<number>({ required: true });
-
+const formValue = defineModel<number>();
 defineExpose({ formValue });
 </script>
 

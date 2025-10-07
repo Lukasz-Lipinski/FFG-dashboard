@@ -16,9 +16,15 @@ import { prepareDataForSignRequest } from "./signForm.service";
 const user = useCookie("user");
 
 const schema = yup.object({
-  email: yup.string().email().required(),
-  password: yup.string().min(8).required(),
-  band: yup.string().required(),
+  email: yup
+    .string()
+    .email("Please enter a valid email address")
+    .required("Email is required"),
+  password: yup
+    .string()
+    .min(8, "Password must be at least 8 characters")
+    .required("Password is required"),
+  band: yup.string().required("Band name is required"),
 });
 
 const { values } = useForm({
