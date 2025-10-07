@@ -1,8 +1,8 @@
 import { H3Event } from "h3";
 import { serverSupabaseClient } from "#supabase/server";
-import { CreateUserAccountModel } from "~~/server/entity/users/CreateUserAccountModel";
+import { CreateUserAccountEntity } from "~~/server/entity/users/CreateUserAccountEntity";
 import { UserDto } from "~~/server/dtos/users/UserDto";
-import { RoleType } from "~~/server/entity/users/UserModel";
+import { RoleType, UserEntity } from "~~/server/entity/users/UserEntity";
 import { CreateUserDto } from "~~/server/dtos/users/CreateUserDto";
 
 export const CheckIfUserExists = async (
@@ -21,7 +21,19 @@ export const CheckIfUserExists = async (
     throw new Error(error.message);
   }
 
-  return data && data.length > 0 ? data[0] : null;
+  if (data && data.length > 0) {
+    const foundUser = data[0] as UserEntity;
+    const user = new UserDto(
+      foundUser.Id,
+      foundUser.Email,
+      foundUser.Band,
+      foundUser.Role
+    );
+
+    return user;
+  }
+
+  return null;
 };
 
 export const CreateAdminUser = async (
@@ -30,7 +42,7 @@ export const CreateAdminUser = async (
 ) => {
   const client = await serverSupabaseClient(event);
 
-  const newAdmin = new CreateUserAccountModel(
+  const newAdmin = new CreateUserAccountEntity(
     userCred.Email,
     userCred.Password,
     userCred.Band,
@@ -63,7 +75,7 @@ export const CreateRegularUser = async (
     });
   }
 
-  const newUser = new CreateUserAccountModel(
+  const newUser = new CreateUserAccountEntity(
     userCred.Email,
     userCred.Password,
     userCred.Band,

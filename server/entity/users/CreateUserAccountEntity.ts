@@ -1,6 +1,6 @@
-import { RoleType } from "./UserModel";
+import { RoleType } from "./UserEntity";
 
-export class CreateUserAccountModel {
+export class CreateUserAccountEntity {
   Email: string;
   Password: string;
   Band: string;

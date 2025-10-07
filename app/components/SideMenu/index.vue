@@ -21,11 +21,7 @@
 </template>
 
 <script setup lang="ts">
-type MenuLinkType = {
-  href: string;
-  label: string;
-  icon: string;
-};
+import type { MenuLinkType } from "~/types/MenuLinkType";
 
 const links: MenuLinkType[] = [
   { href: "/", label: "Dashboard", icon: "home" },

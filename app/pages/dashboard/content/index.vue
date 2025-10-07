@@ -1,13 +1,9 @@
 <template>
   <NuxtLayout name="dashboard">
-    <FormSwitch></FormSwitch>
+    <ContentMenu />
   </NuxtLayout>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts" setup></script>
 
-</script>
-
-<style lang="css" scoped>
-
-</style>
+<style lang="css" scoped></style>

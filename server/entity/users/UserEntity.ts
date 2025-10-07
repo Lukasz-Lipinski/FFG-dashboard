@@ -4,12 +4,12 @@ export enum RoleType {
   Admin = "Admin",
 }
 
-export class UserModel {
+export class UserEntity {
   Id: number;
   Email: string;
   Password: string;
   Band: string;
-  Role: string;
+  Role: RoleType;
   CreatedAt: Date;
   UpdatedDate?: Date;
 

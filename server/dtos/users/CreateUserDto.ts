@@ -1,4 +1,4 @@
-import { RoleType } from "~~/server/entity/users/UserModel";
+import { RoleType } from "~~/server/entity/users/UserEntity";
 
 export class CreateUserDto {
   Email: string;
