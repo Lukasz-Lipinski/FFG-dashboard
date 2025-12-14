@@ -3,7 +3,7 @@ import {
   CheckIfAdminOnSiteExists,
   CreateAdminUser,
   CreateRegularUser,
-} from "~~/server/middlewaressss/auth/auth.service";
+} from "~~/server/services/auth.service";
 import { parseBody } from "~~/server/services/request.service";
 
 export default defineEventHandler(async (event) => {

@@ -12,7 +12,7 @@
       </NuxtLink>
     </div>
     <div>
-      <a class="nav-link">
+      <a class="nav-link" @click="onLogout">
         <v-icon icon="mdi-logout" />
         Logout
       </a>
@@ -23,6 +23,9 @@
 <script setup lang="ts">
 import type { MenuLinkType } from "~/types/MenuLinkType";
 
+const user = useCookie("user");
+const router = useRouter();
+
 const links: MenuLinkType[] = [
   { href: "/", label: "Dashboard", icon: "home" },
   { href: "/users", label: "Users", icon: "account" },
@@ -30,6 +33,11 @@ const links: MenuLinkType[] = [
   { href: "/configuration", label: "Configuration", icon: "cog-outline" },
   { href: "/page", label: "Page", icon: "page" },
 ];
+
+const onLogout = () => {
+  user.value = null;
+  router.push("/");
+};
 </script>
 
 <style lang="css" scooped>

@@ -1,5 +1,5 @@
 import { parseBody } from "~~/server/services/request.service";
-import { CheckIfUserExists } from "../../middlewaressss/auth/auth.service";
+import { CheckIfUserExists } from "../../services/auth.service";
 import { CreateUserDto } from "~~/server/dtos/users/CreateUserDto";
 
 export default defineEventHandler(async (event) => {
@@ -14,7 +14,6 @@ export default defineEventHandler(async (event) => {
       statusText: "Not Found",
     });
   } else {
-    // Respond with user data
     event.respondWith(
       new Response(JSON.stringify(user), {
         status: 200,

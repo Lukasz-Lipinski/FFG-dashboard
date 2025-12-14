@@ -66,7 +66,6 @@ const props = defineProps<{
 
 const btnLabel = computed(() => (props.isRegister ? "Sign up!" : "Sign in!"));
 </script>
-f
 
 <template>
   <Form

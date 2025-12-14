@@ -1,13 +1,18 @@
 <template>
-  <h4>{{ title }}</h4>
+  <h4 v-if="title">{{ title }}</h4>
   <Form
-    #="{ handleSubmit: onSubmit, values, errors }"
+    #="{ handleSubmit: onSubmit }"
     :validation-schema="schema"
     class="one-field-form"
     @submit="onSubmit"
   >
     <VLabel>{{ label }}</VLabel>
-    <Field :name="fieldName" type="email" class="form-field" />
+    <Field
+      :name="fieldName"
+      type="email"
+      class="form-field"
+      :modelValue="initialValue"
+    />
     <ErrorMsg :name="fieldName" class="error-message" />
     <VBtn type="submit"> {{ btnText }} </VBtn>
   </Form>
@@ -23,15 +28,16 @@ import {
 import { Schema } from "yup";
 import ErrorMsg from "../ErrorMsg/ErrorMsg.vue";
 
-const { schema, fieldName } = defineProps<{
+const { schema, fieldName, initialValue } = defineProps<{
   schema: Schema;
   label: string;
   btnText: string;
   fieldName: string;
-  title: string;
+  title?: string;
+  initialValue?: any;
 }>();
 
-const { values, errors } = useForm({
+const { values, errors, setValues } = useForm({
   validationSchema: schema,
 });
 
@@ -42,6 +48,16 @@ const emit = defineEmits<{
 const onSubmit: SubmissionHandler<GenericObject> = async (event) => {
   emit("onSubmit", event);
 };
+
+watch(
+  () => initialValue,
+  (newValue) => {
+    setValues({
+      [fieldName]: newValue,
+    });
+  },
+  { immediate: true }
+);
 </script>
 
 <style lang="css" scoped>

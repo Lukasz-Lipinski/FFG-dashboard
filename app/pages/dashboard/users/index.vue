@@ -1,12 +1,14 @@
 <template>
   <NuxtLayout name="dashboard">
-    users
-    {{ user }}
+    <UserData :userCredential="user" />
   </NuxtLayout>
 </template>
 
 <script lang="ts" setup>
-const user = useCookie("user");
+import UserData from "~/components/UserData/UserData.vue";
+import type { UserDto } from "~~/server/dtos/users/UserDto";
+
+const user = useCookie<UserDto>("user");
 </script>
 
 <style lang="css" scoped></style>

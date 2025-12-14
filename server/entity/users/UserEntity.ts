@@ -5,7 +5,7 @@ export enum RoleType {
 }
 
 export class UserEntity {
-  Id: number;
+  id: number;
   Email: string;
   Password: string;
   Band: string;
@@ -22,7 +22,7 @@ export class UserEntity {
     createdAt: Date,
     updatedDate?: Date
   ) {
-    this.Id = id;
+    this.id = id;
     this.Email = email;
     this.Password = password;
     this.Band = band;

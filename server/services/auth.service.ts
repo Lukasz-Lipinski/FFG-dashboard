@@ -24,7 +24,33 @@ export const CheckIfUserExists = async (
   if (data && data.length > 0) {
     const foundUser = data[0] as UserEntity;
     const user = new UserDto(
-      foundUser.Id,
+      foundUser.id,
+      foundUser.Email,
+      foundUser.Band,
+      foundUser.Role
+    );
+
+    return user;
+  }
+
+  return null;
+};
+
+export const CheckIsUserExistsById = async (
+  event: H3Event,
+  id: number
+): Promise<UserDto | null> => {
+  const client = await serverSupabaseClient(event);
+  const { data, error } = await client.from("Users").select("*").eq("id", id);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  if (data && data.length > 0) {
+    const foundUser = data[0] as UserEntity;
+    const user = new UserDto(
+      foundUser.id,
       foundUser.Email,
       foundUser.Band,
       foundUser.Role
@@ -47,7 +73,7 @@ export const CreateAdminUser = async (
     userCred.Password,
     userCred.Band,
     RoleType.Admin
-  );
+  ) as never;
 
   await client.from("Users").insert([newAdmin]);
 
@@ -80,9 +106,9 @@ export const CreateRegularUser = async (
     userCred.Password,
     userCred.Band,
     RoleType.Member
-  );
+  ) as never;
 
-  await client.from("Users").insert([newUser]);
+  await client.from("Users").insert([newUser], { count: "exact" });
 
   const user = await CheckIfUserExists(event, userCred);
 

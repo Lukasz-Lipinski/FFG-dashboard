@@ -1,11 +1,11 @@
 <template>
-    <NuxtLayout name="dashboard">
-        <NuxtPage />
-    </NuxtLayout>
+  <NuxtLayout name="dashboard">
+    <NuxtPage />
+  </NuxtLayout>
 </template>
 
 <script lang="ts" setup>
-const config = useState("config");
+const pageUrl = useState("pageUrl");
 const data = useFetch("/api/user");
 </script>
 

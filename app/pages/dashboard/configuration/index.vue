@@ -7,7 +7,7 @@
         title="Set Page Url"
         fieldName="pageUrl"
         label="Page Url"
-        btn-text="Set Page Url"
+        btn-text="Save"
         @onSubmit="onSubmit"
       />
     </div>
@@ -18,6 +18,12 @@
 import ConfigurationForm from "~/components/Forms/OneFieldForm/index.vue";
 import { object, string } from "yup";
 import type { GenericObject } from "vee-validate";
+import type { UserDto } from "~~/server/dtos/users/UserDto";
+
+const user = useCookie<UserDto>("user");
+const pageUrl = useState<string>("pageUrl");
+
+const { error, success } = useToast();
 
 const schema = object({
   pageUrl: string()
@@ -31,9 +37,23 @@ const schema = object({
     ),
 });
 
-function onSubmit(event: GenericObject) {
+async function onSubmit(event: GenericObject) {
   const url = event as { pageUrl: string };
-  console.log("Form submitted with:", event);
+
+  const response = await fetch(`/api/configuration/${user.value.Band}`, {
+    method: "POST",
+    body: JSON.stringify({
+      pageUrl: url.pageUrl,
+    }),
+  });
+
+  if (!response.ok) {
+    error("Failed to save url");
+  } else {
+    success("Url saved successfully!");
+    const url = await response.json();
+    pageUrl.value = url;
+  }
 }
 </script>
 <style lang="css" scoped>
