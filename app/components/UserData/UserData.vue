@@ -65,7 +65,6 @@ const onSubmit = async (values: GenericObject) => {
   }
 
   const data = await response.json();
-
   if (data && data.error) {
     error(data.error);
   } else {

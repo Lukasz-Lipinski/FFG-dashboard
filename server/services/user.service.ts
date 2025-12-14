@@ -14,10 +14,13 @@ export async function UpdateUserData(
     .from("Users")
     .update({
       Email: editUserDto.NewEmail,
-      UpdatedDate: new Date().toISOString(),
+      Update_date: new Date().toISOString(),
     } as never)
     .eq("id", editUserDto.Id)
     .select();
+
+  console.log(data);
+  console.log(error);
 
   if (error || !data?.length) {
     return null;

@@ -15,6 +15,13 @@ export default defineEventHandler(async (event) => {
 
   const updatedUser = await UpdateUserData(event, body);
 
+  if (updatedUser) {
+    createError({
+      message: "Upate failed",
+      statusCode: 500,
+    });
+  }
+
   return event.respondWith(
     new Response(JSON.stringify(updatedUser), { status: 200 })
   );
