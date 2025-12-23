@@ -10,6 +10,15 @@
         <v-icon :icon="'mdi-' + link.icon" />
         {{ link.label }}
       </NuxtLink>
+      <NuxtLink
+        v-if="siteConfig?.Link"
+        class="nav-link"
+        :external="true"
+        :href="siteConfig.Link"
+        target="_blank"
+      >
+        Page
+      </NuxtLink>
     </div>
     <div>
       <a class="nav-link" @click="onLogout">
@@ -22,20 +31,22 @@
 
 <script setup lang="ts">
 import type { MenuLinkType } from "~/types/MenuLinkType";
+import { ConfigurationDto } from "~~/server/dtos/configuration/ConfigurationDto";
 
 const user = useCookie("user");
 const router = useRouter();
+const siteConfig = useCookie<ConfigurationDto | null>("site-configuration");
 
 const links: MenuLinkType[] = [
   { href: "/", label: "Dashboard", icon: "home" },
   { href: "/users", label: "Users", icon: "account" },
   { href: "/content", label: "Content", icon: "file-document-edit-outline " },
   { href: "/configuration", label: "Configuration", icon: "cog-outline" },
-  { href: "/page", label: "Page", icon: "page" },
 ];
 
 const onLogout = () => {
   user.value = null;
+  siteConfig.value = null;
   router.push("/");
 };
 </script>
