@@ -2,12 +2,15 @@
   <div class="main-container">
     <SideMenu class="custom-width full-height" />
     <div class="main-content">
+      <BreadcrumbsNav />
       <slot />
     </div>
   </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import BreadcrumbsNav from "~/components/BreadcrumbsNav/BreadcrumbsNav.vue";
+</script>
 
 <style lang="css" scoped>
 .main-container {

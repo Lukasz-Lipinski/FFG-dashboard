@@ -11,7 +11,7 @@ export class UserEntity {
   Band: string;
   Role: RoleType;
   CreatedAt: Date;
-  UpdatedDate?: Date;
+  UpdateDate?: Date;
 
   constructor(
     id: number,
@@ -20,7 +20,7 @@ export class UserEntity {
     band: string,
     role: RoleType,
     createdAt: Date,
-    updatedDate?: Date
+    updateDate?: Date
   ) {
     this.id = id;
     this.Email = email;
@@ -28,6 +28,6 @@ export class UserEntity {
     this.Band = band;
     this.Role = role;
     this.CreatedAt = createdAt;
-    this.UpdatedDate = updatedDate;
+    this.UpdateDate = updateDate;
   }
 }

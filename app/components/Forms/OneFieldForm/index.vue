@@ -1,7 +1,7 @@
 <template>
   <h4 v-if="title">{{ title }}</h4>
   <Form
-    #="{ handleSubmit: onSubmit }"
+    #="{ handleSubmit: onSubmit, meta }"
     :validation-schema="schema"
     class="one-field-form"
     @submit="onSubmit"
@@ -14,7 +14,9 @@
       :modelValue="initialValue"
     />
     <ErrorMsg :name="fieldName" class="error-message" />
-    <VBtn type="submit"> {{ btnText }} </VBtn>
+    <VBtn size="small" color="primary" type="submit" :disabled="!meta.valid">
+      {{ btnText }}
+    </VBtn>
   </Form>
 </template>
 
@@ -37,7 +39,7 @@ const { schema, fieldName, initialValue } = defineProps<{
   initialValue?: any;
 }>();
 
-const { values, errors, setValues } = useForm({
+const { errors, setValues, meta, validate } = useForm({
   validationSchema: schema,
 });
 
