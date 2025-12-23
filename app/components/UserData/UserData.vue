@@ -103,8 +103,8 @@ const onSubmit = async (values: GenericObject) => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid #ccc;
-  border-radius: 0.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
   padding: 1.5rem 2rem 2rem 2rem;
 }
 
