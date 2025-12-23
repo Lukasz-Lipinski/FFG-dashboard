@@ -14,7 +14,7 @@ export async function UpdateUserData(
     .from("Users")
     .update({
       Email: editUserDto.NewEmail,
-      UpdatedDate: new Date().toISOString(),
+      UpdateDate: new Date().toISOString(),
     } as never)
     .eq("id", editUserDto.Id)
     .select();
