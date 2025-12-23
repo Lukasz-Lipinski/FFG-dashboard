@@ -3,9 +3,10 @@
     <h2 class="title">Configuration Page</h2>
     <p class="page-subtitle">Adjust application settings</p>
     <div class="frame">
+      <h3>Set Page URL</h3>
       <ConfigurationForm
         :schema="schema"
-        title="Set Page Url"
+        :initial-value="siteConfig.Link"
         fieldName="pageUrl"
         label="Page Url"
         btn-text="Save"
@@ -20,9 +21,10 @@ import ConfigurationForm from "~/components/Forms/OneFieldForm/index.vue";
 import { object, string } from "yup";
 import type { GenericObject } from "vee-validate";
 import type { UserDto } from "~~/server/dtos/users/UserDto";
+import type { ConfigurationDto } from "~~/server/dtos/configuration/ConfigurationDto";
 
 const user = useCookie<UserDto>("user");
-const pageUrl = useState<string>("pageUrl", () => "");
+const siteConfig = useCookie<ConfigurationDto>("site-configuration");
 
 const { error, success } = useToast();
 
@@ -56,8 +58,9 @@ async function onSubmit(event: GenericObject) {
     error("Failed to save url");
   } else {
     success("Url saved successfully!");
-    const savedUrl = await response.json();
-    pageUrl.value = savedUrl;
+    debugger;
+    const savedUrl = (await response.json()) as ConfigurationDto;
+    siteConfig.value = savedUrl;
   }
 }
 </script>
@@ -96,6 +99,19 @@ async function onSubmit(event: GenericObject) {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   max-width: 600px;
   margin: 0 auto;
+
+  h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #111827;
+    margin: 0 0 1rem 0;
+    text-align: center;
+    width: 100%;
+    display: block;
+    padding-top: 0.5rem;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 0.5rem;
+  }
 }
 
 /* Form title styling */

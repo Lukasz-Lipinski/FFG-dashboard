@@ -5,8 +5,16 @@
 </template>
 
 <script lang="ts" setup>
-const pageUrl = useState("pageUrl");
-const data = useFetch("/api/user");
+import { ConfigurationDto } from "~~/server/dtos/configuration/ConfigurationDto";
+import type { UserDto } from "~~/server/dtos/users/UserDto";
+
+const user = useCookie<UserDto>("user");
+const siteConfig = useCookie<ConfigurationDto>("site-configuration");
+useFetch(`/api/configuration/${user.value.Band}`).then((res) => {
+  if (res.data.value) {
+    siteConfig.value = res.data.value;
+  }
+});
 </script>
 
 <style lang="css"></style>

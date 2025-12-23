@@ -43,7 +43,8 @@ export async function SetURL(
     } else {
       response = await client
         .from("Configuration")
-        .update({ Link: link } as never);
+        .update({ Link: link } as never)
+        .eq("Band", band);
     }
   } catch (error) {
     throw createError({
