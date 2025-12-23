@@ -29,13 +29,9 @@ export async function SetURL(
   userId: number
 ): Promise<void> {
   try {
-    console.log("band", band);
-    console.log("link", link);
-    console.log("userId", userId);
     const client = await serverSupabaseClient(event);
 
     const configuration = await FindConfigurationForBand(event, band);
-    console.log("found config", configuration);
 
     let response;
     if (configuration === null) {
@@ -49,19 +45,31 @@ export async function SetURL(
         .from("Configuration")
         .update({ Link: link } as never);
     }
-
-    const { error } = response;
-
-    if (error) {
-      throw createError({
-        message: "Saving URL failed",
-        status: 500,
-      });
-    }
   } catch (error) {
     throw createError({
       message: "Saving URL failed",
       status: 500,
     });
   }
+}
+
+export async function FetchSiteConfiguration(
+  event: H3Event,
+  band: string
+): Promise<ConfigurationDto | null> {
+  const client = await serverSupabaseClient(event);
+  const { data, error } = await client
+    .from("Configuration")
+    .select("*")
+    .eq("Band", band)
+    .single<ConfigurationEntity>();
+
+  if (!data || error) {
+    throw createError({
+      message: "Configuration not found for this site",
+      statusCode: 404,
+    });
+  }
+
+  return new ConfigurationDto(data.Band, data.Link, data.id);
 }
