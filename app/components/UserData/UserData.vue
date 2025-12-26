@@ -83,7 +83,7 @@ const onSubmit = async (values: GenericObject) => {
 <style scoped lang="css">
 /* Page title - top level header */
 .user-data-wrapper > div:first-child .user-data-header {
-  font-size: 28px;
+  font-size: 1.75rem;
   font-weight: 600;
   color: #111827;
   margin-bottom: 0.5rem;
@@ -92,7 +92,7 @@ const onSubmit = async (values: GenericObject) => {
 
 /* Subtitle - below page title */
 .user-data-wrapper > div:first-child .user-data-subheader {
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 400;
   color: #6b7280;
   margin-bottom: 2rem;
@@ -103,8 +103,8 @@ const onSubmit = async (values: GenericObject) => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
+  border: 0.0625rem solid #e5e7eb;
+  border-radius: 0.75rem;
   padding: 1.5rem 2rem 2rem 2rem;
 }
 
@@ -118,7 +118,7 @@ const onSubmit = async (values: GenericObject) => {
 
 /* Card title - inside credential box */
 .user-data-credential-box .user-data-header {
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 600;
   color: #111827;
   margin: 0 0 1rem 0;
@@ -126,13 +126,13 @@ const onSubmit = async (values: GenericObject) => {
   width: 100%;
   display: block;
   padding-top: 0.5rem;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 0.0625rem solid #ccc;
   padding-bottom: 0.5rem;
 }
 
 /* Static field values */
 .user-data-credential-box .user-data-text {
-  font-size: 15px;
+  font-size: 0.9375rem;
   font-weight: 500;
   color: #111827;
 }
@@ -144,21 +144,21 @@ const onSubmit = async (values: GenericObject) => {
 
 /* Form field labels */
 .user-data-form label {
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 500;
   color: #6b7280;
 }
 
 /* Form input text */
 .user-data-form input {
-  font-size: 15px;
+  font-size: 0.9375rem;
   font-weight: 400;
   color: #111827;
 }
 
 /* Form placeholder text */
 .user-data-form input::placeholder {
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 400;
   color: #9ca3af;
 }

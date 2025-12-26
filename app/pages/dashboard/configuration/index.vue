@@ -6,7 +6,7 @@
       <h3>Set Page URL</h3>
       <ConfigurationForm
         :schema="schema"
-        :initial-value="siteConfig.Link"
+        :initial-value="siteConfig?.Link"
         fieldName="pageUrl"
         label="Page Url"
         btn-text="Save"
@@ -58,7 +58,6 @@ async function onSubmit(event: GenericObject) {
     error("Failed to save url");
   } else {
     success("Url saved successfully!");
-    debugger;
     const savedUrl = (await response.json()) as ConfigurationDto;
     siteConfig.value = savedUrl;
   }
@@ -69,39 +68,39 @@ async function onSubmit(event: GenericObject) {
 /* Main container styling */
 .configuration-page {
   font-family: Inter, Roboto, system-ui, -apple-system, sans-serif;
-  max-width: 1200px;
+  max-width: 75rem;
   margin: 0 auto;
-  padding: 32px 40px;
+  padding: 2rem 2.5rem;
 }
 
 /* Page title styling */
 .title {
-  font-size: 28px;
+  font-size: 1.75rem;
   font-weight: 600;
   color: #111827;
-  margin: 0 0 8px 0;
+  margin: 0 0 0.5rem 0;
 }
 
 /* Page subtitle styling */
 .page-subtitle {
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 400;
   color: #6b7280;
-  margin: 0 0 32px 0;
+  margin: 0 0 2rem 0;
 }
 
 /* Frame/card styling */
 .frame {
   background-color: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  max-width: 600px;
+  border: 0.0625rem solid #e5e7eb;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.05);
+  max-width: 37.5rem;
   margin: 0 auto;
 
   h3 {
-    font-size: 18px;
+    font-size: 1.125rem;
     font-weight: 600;
     color: #111827;
     margin: 0 0 1rem 0;
@@ -109,78 +108,78 @@ async function onSubmit(event: GenericObject) {
     width: 100%;
     display: block;
     padding-top: 0.5rem;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 0.0625rem solid #ccc;
     padding-bottom: 0.5rem;
   }
 }
 
 /* Form title styling */
 .frame h4 {
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 600;
   color: #111827;
-  margin: 0 0 24px 0;
+  margin: 0 0 1.5rem 0;
   text-align: center;
 }
 
 /* Form label styling */
 .v-label {
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 500;
   color: #6b7280;
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem;
 }
 
 /* Input field styling */
 .form-field {
-  font-size: 15px;
+  font-size: 0.9375rem;
   font-weight: 400;
   color: #111827;
-  padding: 12px 14px;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
+  padding: 0.75rem 0.875rem;
+  border: 0.0625rem solid #e5e7eb;
+  border-radius: 0.5rem;
   background-color: #ffffff;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
   width: 100%;
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem;
 }
 
 .form-field:focus {
   outline: none;
   border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  box-shadow: 0 0 0 0.1875rem rgba(37, 99, 235, 0.1);
 }
 
 /* Error message styling */
 .error-message {
-  font-size: 14px;
+  font-size: 0.875rem;
   color: #ef4444;
-  margin-top: 4px;
-  margin-bottom: 16px;
+  margin-top: 0.25rem;
+  margin-bottom: 1rem;
 }
 
 /* Divider styling */
 .form-divider {
-  height: 1px;
+  height: 0.0625rem;
   background-color: #e5e7eb;
-  margin: 16px 0;
+  margin: 1rem 0;
 }
 
 /* Button styling */
 .v-btn {
   font-family: Inter, Roboto, system-ui, -apple-system, sans-serif;
-  font-size: 15px;
+  font-size: 0.9375rem;
   font-weight: 600;
   color: #ffffff;
   background-color: #2563eb;
   border: none;
-  border-radius: 10px;
-  padding: 14px;
+  border-radius: 0.625rem;
+  padding: 0.875rem;
   cursor: pointer;
   transition: background-color 0.2s ease;
   width: 100%;
-  margin-top: 16px;
+  margin-top: 1rem;
 }
 
 .v-btn:hover:not(:disabled) {
@@ -194,31 +193,31 @@ async function onSubmit(event: GenericObject) {
 }
 
 /* Responsive design */
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   .configuration-page {
-    padding: 24px 20px;
+    padding: 1.5rem 1.25rem;
   }
 
   .title {
-    font-size: 24px;
+    font-size: 1.5rem;
   }
 
   .frame {
-    padding: 20px;
+    padding: 1.25rem;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 30rem) {
   .configuration-page {
-    padding: 16px 12px;
+    padding: 1rem 0.75rem;
   }
 
   .title {
-    font-size: 22px;
+    font-size: 1.375rem;
   }
 
   .frame h4 {
-    font-size: 16px;
+    font-size: 1rem;
   }
 }
 </style>

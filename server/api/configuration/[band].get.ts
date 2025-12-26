@@ -1,8 +1,33 @@
 import { FetchSiteConfiguration } from "../../services/configuration.service";
-import { createError } from "h3";
+import { createError, getCookie } from "h3";
 import type { H3Event } from "h3";
+import { CheckIsUserExistsById } from "../../services/auth.service";
 
 export default defineEventHandler(async (event: H3Event) => {
+  const userCookie = getCookie(event, "user");
+  if (!userCookie) {
+    throw createError({
+      statusCode: 401,
+      statusMessage: "Not Authorized",
+    });
+  }
+
+  try {
+    const user = JSON.parse(userCookie);
+    const foundUser = await CheckIsUserExistsById(event, user.Id);
+    if (!foundUser?.Id) {
+      throw createError({
+        statusCode: 401,
+        statusMessage: "Not Authorized",
+      });
+    }
+  } catch {
+    throw createError({
+      statusCode: 401,
+      statusMessage: "Not Authorized",
+    });
+  }
+
   // Extract the 'band' parameter from the route
   const band = getRouterParam(event, "band");
 

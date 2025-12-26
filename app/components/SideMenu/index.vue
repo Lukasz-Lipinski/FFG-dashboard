@@ -57,7 +57,7 @@ const onLogout = () => {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border-right: 1px solid #e5e7eb;
+  border-right: 0.0625rem solid #e5e7eb;
 
   .nav-link {
     position: relative;

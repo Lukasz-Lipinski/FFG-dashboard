@@ -19,9 +19,6 @@ export async function UpdateUserData(
     .eq("id", editUserDto.Id)
     .select();
 
-  console.log(data);
-  console.log(error);
-
   if (error || !data?.length) {
     return null;
   }

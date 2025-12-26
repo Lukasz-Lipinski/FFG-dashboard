@@ -66,7 +66,7 @@ watch(
 .one-field-form {
   display: flex;
   flex-direction: column;
-  min-width: 450px;
+  min-width: 28.125rem;
 
   .v-btn {
     margin-top: 2rem;

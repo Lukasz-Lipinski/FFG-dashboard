@@ -26,9 +26,7 @@ const schema = object({
   email: string().email("Invalid email").required("Email is required"),
 });
 
-function onSubmit(data: GenericObject) {
-  console.log(data);
-}
+function onSubmit(data: GenericObject) {}
 </script>
 
 <style lang="css" scoped>
@@ -36,7 +34,7 @@ function onSubmit(data: GenericObject) {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid var(--border-color);
+  border: 0.0625rem solid var(--border-color);
   padding: 3rem;
   border-radius: 0.5rem;
 }

@@ -136,7 +136,7 @@ function formatPathSegment(segment: string): string {
 }
 
 /* Responsive design */
-@media (max-width: 640px) {
+@media (max-width: 40rem) {
   .breadcrumbs-list {
     flex-wrap: wrap;
   }

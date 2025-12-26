@@ -28,3 +28,20 @@ input {
 .title {
   margin-bottom: 1.5rem;
 }
+
+/* Responsive design for smartphone viewports */
+@media (max-width: 768px) {
+  input {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .title {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+
+  .form-field {
+    font-size: 0.9rem;
+  }
+}

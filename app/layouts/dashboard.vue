@@ -24,6 +24,20 @@ import BreadcrumbsNav from "~/components/BreadcrumbsNav/BreadcrumbsNav.vue";
 }
 
 .custom-width {
-  min-width: 240px;
+  min-width: 15rem;
+}
+
+@media (max-width: 768px) {
+  .main-container {
+    padding: 1rem 0;
+
+    .main-content {
+      padding: 0 1rem;
+    }
+  }
+
+  .custom-width {
+    min-width: 10rem;
+  }
 }
 </style>

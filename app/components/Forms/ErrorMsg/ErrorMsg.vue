@@ -13,7 +13,7 @@ defineProps<{
 <style scoped lang="css">
 div {
   position: relative;
-  padding-bottom: calc(0.5rem + 4.5px);
+  padding-bottom: calc(0.5rem + 0.28125rem);
   padding-left: 0.5rem;
 }
 
