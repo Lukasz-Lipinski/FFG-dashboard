@@ -1,8 +1,9 @@
 <template>
   <nav>
-    <a v-for="link in links">
+    <NuxtLink v-for="link in links" :to="link.href">
+      <VIcon :icon="'mdi-' + link.icon" />
       {{ link.label }}
-    </a>
+    </NuxtLink>
   </nav>
 </template>
 
@@ -10,9 +11,9 @@
 import type { MenuLinkType } from "~/types/MenuLinkType";
 
 const links: MenuLinkType[] = [
-  { href: "/events", label: "Event", icon: "calendar" },
-  { href: "/info", label: "Info", icon: "info" },
-  { href: "/news", label: "News", icon: "newspaper" },
+  { href: "/dashboard/content/create-gig", label: "Gig", icon: "calendar" },
+  { href: "/dashboard/content/create-info", label: "Info", icon: "info" },
+  { href: "/dashboard/content/create-news", label: "News", icon: "newspaper" },
 ];
 </script>
 

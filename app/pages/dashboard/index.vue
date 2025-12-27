@@ -17,17 +17,20 @@ const content = useCookie<{
 } | null>("gigs");
 
 const { error, data } = useAsyncData("content-gigs", async () => {
-  const [configuration, gigs] = await Promise.all([
+  const [configuration, gigs, about] = await Promise.all([
     $fetch<ConfigurationDto>(`/api/configuration/${user.value.Band}`, {
       method: "GET",
     }),
     $fetch<GigDto[]>(`/api/${user.value.Band}/gigs`, {
       method: "GET",
     }),
+    $fetch<GigDto[]>(`/api/${user.value.Band}/about`, {
+      method: "GET",
+    }),
   ]);
 
   debugger;
-  return { configuration, gigs };
+  return { configuration, gigs, about };
 });
 
 const { error: toastError } = useToast();
@@ -45,7 +48,7 @@ watch(
       siteConfig.value = newData.configuration;
       content.value = {
         gigs: newData?.gigs ?? [],
-        about: null,
+        about: newData?.about,
       };
     }
   }
