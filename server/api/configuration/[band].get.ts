@@ -1,7 +1,7 @@
 import { FetchSiteConfiguration } from "../../services/configuration.service";
 import { createError, getCookie } from "h3";
 import type { H3Event } from "h3";
-import { CheckIsUserExistsById } from "../../services/auth.service";
+import { CheckIfUserExistsById } from "../../services/auth.service";
 
 export default defineEventHandler(async (event: H3Event) => {
   const userCookie = getCookie(event, "user");
@@ -14,7 +14,7 @@ export default defineEventHandler(async (event: H3Event) => {
 
   try {
     const user = JSON.parse(userCookie);
-    const foundUser = await CheckIsUserExistsById(event, user.Id);
+    const foundUser = await CheckIfUserExistsById(event, user.Id);
     if (!foundUser?.Id) {
       throw createError({
         statusCode: 401,

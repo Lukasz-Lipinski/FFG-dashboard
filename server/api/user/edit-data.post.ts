@@ -1,10 +1,10 @@
-import { CheckIsUserExistsById } from "~~/server/services/auth.service";
+import { CheckIfUserExistsById } from "~~/server/services/auth.service";
 import { UpdateUserData } from "~~/server/services/user.service";
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
 
-  var user = await CheckIsUserExistsById(event, body.Id);
+  var user = await CheckIfUserExistsById(event, body.Id);
 
   if (!user) {
     return createError({

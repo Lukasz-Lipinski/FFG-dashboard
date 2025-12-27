@@ -2,8 +2,9 @@
 import { watch } from "vue";
 import SignForm from "../components/Forms/SignForm/SignForm.vue";
 import FormSwitch from "../components/Forms/FormSwitch/index.vue";
+import type { UserDto } from "~~/server/dtos/users/UserDto";
 
-const user = useCookie("user");
+const user = useCookie<UserDto>("user");
 
 enum FormType {
   Login,
@@ -16,7 +17,6 @@ watch(user, () => {
       name: "dashboard",
     });
   }
-
 });
 
 const selectedForm = defineModel({ default: FormType.Login });

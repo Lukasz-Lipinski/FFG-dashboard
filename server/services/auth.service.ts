@@ -36,15 +36,15 @@ export const CheckIfUserExists = async (
   return null;
 };
 
-export const CheckIsUserExistsById = async (
+export const CheckIfUserExistsById = async (
   event: H3Event,
-  id: number
+  id: string | number
 ): Promise<UserDto | null> => {
   const client = await serverSupabaseClient(event);
   const { data, error } = await client.from("Users").select("*").eq("id", id);
 
   if (error) {
-    throw new Error(error.message);
+    throw createError(error.message);
   }
 
   if (data && data.length > 0) {
